@@ -342,6 +342,14 @@ in {
     '';
   };
 
+  ubootRockPi4 = buildUBoot {
+    extraMakeFlags = [ "all" "u-boot.itb" ];
+    defconfig = "rock-pi-4-rk3399_defconfig";
+    extraMeta.platforms = ["aarch64-linux"];
+    BL31="${armTrustedFirmwareRK3399}/bl31.elf";
+    filesToInstall = [ "u-boot.itb" "idbloader.img"];
+  };
+
   ubootRockPro64 = buildUBoot {
     extraMakeFlags = [ "all" "u-boot.itb" ];
     defconfig = "rockpro64-rk3399_defconfig";
